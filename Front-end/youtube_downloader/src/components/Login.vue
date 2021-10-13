@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div>
     <button type="button" class="btn btn-dark" @click="login">Google</button>
     <button @click="logout">Logout</button>
     <h2>
@@ -19,15 +19,12 @@ import {
 } from "firebase/auth";
 
 export default {
-  name: "HelloWorld",
+  name: "Login",
   data() {
     return {
       name: undefined,
       email: undefined,
     };
-  },
-  props: {
-    msg: String,
   },
   methods: {
     login() {
@@ -65,21 +62,3 @@ export default {
   },
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
