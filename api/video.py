@@ -5,7 +5,10 @@ video_args.add_argument('name', type=str, help="Name is required", required=Fals
 video_args.add_argument('age', type=int, help="Age is required", required=False)
 video_args.add_argument('url', type=str, help="URL is required", required=False)
 
-videos = {1: {"name": "ivan", "age": 15}, 2: {"name": "gosho", "age": 20}}
+videos = []
+
+for i in range(100):
+    videos.append({"name": i, "uid": i if i % 3 == 0 else "BnzDvTGi3hhu82KjxnQmSQE0WXu2"})
 
 
 class VideoList(Resource):

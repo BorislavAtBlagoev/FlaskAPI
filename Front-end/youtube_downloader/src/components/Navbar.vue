@@ -49,7 +49,6 @@ import {
   GoogleAuthProvider,
   signOut,
 } from "firebase/auth";
-import store from "../store";
 import { mapGetters } from "vuex";
 
 export default {
@@ -79,9 +78,9 @@ export default {
       signInWithPopup(auth, provider)
         .then((result) => {
           const user = result.user;
-          store.dispatch("authentication/setIsAuthenticated", true);
-          store.dispatch("users/setName", user.displayName);
-          store.dispatch("users/setUid", user.uid);
+          this.$store.dispatch("authentication/setIsAuthenticated", true);
+          this.$store.dispatch("users/setName", user.displayName);
+          this.$store.dispatch("users/setUid", user.uid);
         })
         .catch((error) => {
           console.log(error);
@@ -91,9 +90,9 @@ export default {
       const auth = getAuth();
       signOut(auth)
         .then(() => {
-          store.dispatch("authentication/setIsAuthenticated", false);
-          store.dispatch("users/setName", undefined);
-          store.dispatch("users/setUid", undefined);
+          this.$store.dispatch("authentication/setIsAuthenticated", false);
+          this.$store.dispatch("users/setName", undefined);
+          this.$store.dispatch("users/setUid", undefined);
         })
         .catch((error) => {
           console.error(error);
