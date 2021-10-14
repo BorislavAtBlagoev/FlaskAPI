@@ -23,7 +23,9 @@ export default {
     Download,
   },
   data() {
-    return {};
+    return {
+      isLoading: false,
+    };
   },
   computed: {
     ...mapGetters("videos", ["videos", "videoName"]),
@@ -32,6 +34,9 @@ export default {
   methods: {
     getUserVideos() {
       return this.videos.filter((video) => video.uid == this.uid);
+    },
+    load() {
+      this.isLoading = true;
     },
   },
   async created() {
