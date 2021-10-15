@@ -3,17 +3,15 @@
     <h1 class="header">Convert & Download</h1>
     <Convert v-if="videoName == undefiend" />
     <Download v-if="videoName" />
-    <!-- <ul>
-      <li v-for="(video, index) in getUserVideos()" :key="index">
-        {{ video.name }} {{ video.uid }}
-      </li>
-    </ul> -->
+    <!-- <VideoList /> -->
   </div>
 </template>
 
 <script>
 import Convert from "@/components/Convert.vue";
 import Download from "@/components/Download.vue";
+// import VideoList from "@/components/VideoList.vue";
+
 import { mapGetters } from "vuex";
 
 export default {
@@ -21,27 +19,16 @@ export default {
   components: {
     Convert,
     Download,
+    // VideoList,
   },
   data() {
-    return {
-      isLoading: false,
-    };
+    return {};
   },
   computed: {
-    ...mapGetters("videos", ["videos", "videoName"]),
-    ...mapGetters("users", ["uid"]),
+    ...mapGetters("videos", ["videoName"]),
   },
-  methods: {
-    getUserVideos() {
-      return this.videos.filter((video) => video.uid == this.uid);
-    },
-    load() {
-      this.isLoading = true;
-    },
-  },
-  async created() {
-    await this.$store.dispatch("videos/getVideos");
-  },
+  methods: {},
+  async created() {},
 };
 </script>
 

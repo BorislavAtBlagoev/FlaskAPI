@@ -2,11 +2,11 @@
   <div class="container convert">
     <Loading
       v-model:active="isLoading"
-      :loader="dots"
       :lock-scroll="true"
       :opacity="0.8"
       :height="200"
       :width="200"
+      loader="dots"
       blur="10px"
       background-color="#000"
       color="#fff"
@@ -20,7 +20,7 @@
       />
       <div class="input-group-append">
         <button
-          class="btn btn-outline-secondary"
+          class="btn btn-outline-dark"
           type="button"
           @click="convertVideo"
         >
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
 
@@ -48,19 +49,16 @@ export default {
       isLoading: false,
     };
   },
-  computed: {},
+  computed: {
+    ...mapGetters("users", ["userId"]),
+  },
   methods: {
     async convertVideo() {
       this.isLoading = true;
-      const url = { url: this.videoURL };
-      await this.$store.dispatch("videos/convertVideo", url);
+      const payload = { url: this.videoURL, userId: this.userId };
+      await this.$store.dispatch("videos/convertVideo", payload);
       this.isLoading = false;
     },
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.convert {
-}
-</style>

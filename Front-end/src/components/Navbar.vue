@@ -69,7 +69,7 @@ export default {
   },
   computed: {
     ...mapGetters("authentication", ["isAuthenticated"]),
-    ...mapGetters("users", ["name", "uid"]),
+    ...mapGetters("users", ["name", "userId"]),
   },
   methods: {
     login() {
@@ -78,9 +78,12 @@ export default {
       signInWithPopup(auth, provider)
         .then((result) => {
           const user = result.user;
+
           this.$store.dispatch("authentication/setIsAuthenticated", true);
           this.$store.dispatch("users/setName", user.displayName);
-          this.$store.dispatch("users/setUid", user.uid);
+          this.$store.dispatch("users/setUserId", user.uid);
+
+          this.$router.push({ path: "/convert_download" });
         })
         .catch((error) => {
           console.log(error);
@@ -93,6 +96,8 @@ export default {
           this.$store.dispatch("authentication/setIsAuthenticated", false);
           this.$store.dispatch("users/setName", undefined);
           this.$store.dispatch("users/setUid", undefined);
+
+          this.$router.push({ path: "/" });
         })
         .catch((error) => {
           console.error(error);
