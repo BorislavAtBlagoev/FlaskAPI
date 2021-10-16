@@ -30,8 +30,8 @@ export default {
       const AWS = require("aws-sdk");
 
       const s3bucket = new AWS.S3({
-        accessKeyId: process.env.VUE_APP_ACCESS_KEY_ID,
-        secretAccessKey: process.env.VUE_APP_SECRET_ACCESS_KEY,
+        accessKeyId: process.env.VUE_APP_AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.VUE_APP_AWS_SECRET_ACCESS_KEY,
         signatureVersion: "v4",
         region: process.env.VUE_APP_AWS_REGION,
       });

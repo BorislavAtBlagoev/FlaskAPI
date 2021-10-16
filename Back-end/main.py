@@ -3,6 +3,7 @@ from flask import Flask, Response
 from flask_cors import CORS
 from flask_pymongo import PyMongo, ObjectId
 from flask_restful import Api, Resource, reqparse, abort
+from datetime import datetime
 
 from utils import download_as_audio, upload_audio_to_s3, download_audio_from_s3, parse_to_json
 
@@ -43,6 +44,7 @@ class Converter(Resource):
         file_id, file_name = download_as_audio(args['url'])
         is_uploaded = upload_audio_to_s3(f"{file_name}.mp3", f"{file_name}-{file_id}.mp3")
         if is_uploaded:
+            args.update({'created_at': datetime.utcnow()})
             video_collection.insert_one(args)
             return Response(response=file_name, status=201)
         else:
