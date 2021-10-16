@@ -14,8 +14,8 @@ YDL_OPTS = {
     }],
 }
 
-s3_client = boto3.client('s3', aws_access_key_id="AKIASMO57P5T46IOE5WM",
-                         aws_secret_access_key="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",
+s3_client = boto3.client('s3', aws_access_key_id="",
+                         aws_secret_access_key="",
                          region_name="us-east-1")
 
 
