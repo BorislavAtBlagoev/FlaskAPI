@@ -3,7 +3,7 @@ import axios from "axios";
 const videos = {
   namespaced: true,
   state: {
-    videos: undefined,
+    videos: [],
     videoName: undefined,
   },
   getters: {
@@ -42,6 +42,16 @@ const videos = {
         .then((response) => {
           commit("setVideoName", response.data);
         })
+        .catch((err) => {
+          console.error(err);
+        });
+    },
+    async deleteVideo(_, payload) {
+      await axios
+        .delete(
+          `${process.env.VUE_APP_API_BASE_URL}/${process.env.VUE_APP_API_VIDEO_ENDPOINT}/${payload}`
+        )
+        .then()
         .catch((err) => {
           console.error(err);
         });

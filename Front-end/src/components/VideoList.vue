@@ -1,12 +1,14 @@
 <template>
-  <div class="videoList">
-    <ul>
-      <VideoItem
-        v-for="(item, index) in getUserVideos()"
+  <div class="videoList container">
+    <div class="row">
+      <div
+        class="col d-flex justify-content-center"
+        v-for="(item, index) in getUserVideos"
         :key="index"
-        :videoItem="item"
-      />
-    </ul>
+      >
+        <VideoItem :videoItem="item" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -24,13 +26,12 @@ export default {
   },
   computed: {
     ...mapGetters("videos", ["videos", "videoName"]),
-    ...mapGetters("users", ["uid"]),
-  },
-  methods: {
+    ...mapGetters("users", ["userId"]),
     getUserVideos() {
-      return this.videos.filter((video) => video.uid == this.uid);
+      return this.videos.filter((video) => video.userId == this.userId);
     },
   },
+  methods: {},
   async created() {
     await this.$store.dispatch("videos/getVideos");
   },
@@ -40,5 +41,10 @@ export default {
 <style lang="scss" scoped>
 ul {
   list-style-type: none;
+}
+
+.videoList {
+  margin-top: 100px;
+  text-align: center;
 }
 </style>

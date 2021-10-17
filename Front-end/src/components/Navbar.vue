@@ -95,7 +95,7 @@ export default {
         .then(() => {
           this.$store.dispatch("authentication/setIsAuthenticated", false);
           this.$store.dispatch("users/setName", undefined);
-          this.$store.dispatch("users/setUid", undefined);
+          this.$store.dispatch("users/setUserId", undefined);
 
           this.$router.push({ path: "/" });
         })

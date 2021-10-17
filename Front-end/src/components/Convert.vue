@@ -57,6 +57,7 @@ export default {
       this.isLoading = true;
       const payload = { url: this.videoURL, userId: this.userId };
       await this.$store.dispatch("videos/convertVideo", payload);
+      await this.$store.dispatch("videos/getVideos");
       this.isLoading = false;
     },
   },

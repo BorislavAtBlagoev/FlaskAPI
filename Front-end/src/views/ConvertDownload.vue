@@ -3,14 +3,14 @@
     <h1 class="header">Convert & Download</h1>
     <Convert v-if="videoName == undefiend" />
     <Download v-if="videoName" />
-    <!-- <VideoList /> -->
+    <VideoList />
   </div>
 </template>
 
 <script>
 import Convert from "@/components/Convert.vue";
 import Download from "@/components/Download.vue";
-// import VideoList from "@/components/VideoList.vue";
+import VideoList from "@/components/VideoList.vue";
 
 import { mapGetters } from "vuex";
 
@@ -19,7 +19,7 @@ export default {
   components: {
     Convert,
     Download,
-    // VideoList,
+    VideoList,
   },
   data() {
     return {};

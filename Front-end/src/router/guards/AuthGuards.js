@@ -7,11 +7,3 @@ export const isAuthenticated = (to, from, next) => {
     next({ path: "/" });
   }
 };
-
-export const isManager = (to, from, next) => {
-  if (store.state.authentication.userData.roles === "Manager") {
-    next();
-  } else {
-    next({ path: "/goals" });
-  }
-};

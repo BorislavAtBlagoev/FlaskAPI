@@ -44,7 +44,7 @@ class Converter(Resource):
         file_id, file_name = download_as_audio(args['url'])
         is_uploaded = upload_audio_to_s3(f"{file_name}.mp3", f"{file_name}-{file_id}.mp3")
         if is_uploaded:
-            args.update({'created_at': datetime.utcnow()})
+            args.update({'name': file_name, 'created_at': datetime.utcnow()})
             video_collection.insert_one(args)
             return Response(response=file_name, status=201)
         else:
